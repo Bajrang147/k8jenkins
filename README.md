@@ -15,7 +15,7 @@ node{
     sh "${mavenCMD} clean package"
     }
     stage("Build Docker Image"){
-    sh "docker build -t Bajrang147/spring-boot-mongo ."    
+    sh "docker build -t bajrangmore147/spring-boot-mongo ."    
     }
     stage("Docker Push"){
         withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
