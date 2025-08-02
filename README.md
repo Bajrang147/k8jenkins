@@ -22,12 +22,18 @@ node{
         sh "docker login -u Bajrang147 -p ${DOCKER_HUB_CREDENTIALS}"
         sh "docker push Bajrang147/spring-boot-mongo "
     }
+    }
+    **/
     stage("Deploy Application in k82 Cluster"){
         kubernetesDeploy(
             configs: 'springBootMongo.yml' ,
             kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG' ,
             enableConfigSubstitution: true
             )
-    }    
     }
+    **/
+    stage("Deploy To Kubernetes Cluster"){
+        sh "kubectl apply -f springBootMongo.yml"
+    }
+
 }
